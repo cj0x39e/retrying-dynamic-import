@@ -1,0 +1,34 @@
+{
+  "name": "retrying-dynamic-import",
+  "description": "retrying dynamic import",
+  "publishConfig": {
+    "access": "public"
+  },
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
+  "scripts": {
+    "clear": "rimraf dist",
+    "build": "pnpm run clear && rollup -c"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cj0x39e/retrying-dynamic-import.git"
+  },
+  "keywords": [
+    "dynamic import"
+  ],
+  "author": "cj0x39e",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cj0x39e/retrying-dynamic-import/issues"
+  },
+  "homepage": "https://github.com/cj0x39e/retrying-dynamic-import#readme",
+  "types": "types/index.d.ts",
+  "dependencies": {},
+  "devDependencies": {
+    "rimraf": "^5.0.1",
+    "rollup": "^3.25.1",
+    "typescript": "^5.1.3"
+  }
+}

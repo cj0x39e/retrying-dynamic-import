@@ -1,0 +1,4 @@
+# pnpm-workspace.yaml
+packages:
+  # all packages in subdirs of packages
+  - "packages/*"
