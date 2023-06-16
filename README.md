@@ -15,7 +15,7 @@ import retryingDynamicImport from "rollup-plugin-retrying-dynamic-import"
   ...
 }
 ```
-Add “retrying-dynamic-import” to the entry file(main.js/main.js…).
+Add “retrying-dynamic-import” to the entry file(main.ts/main.js…).
 
 ```js
 import retryingDynamicImport from "retrying-dynamic-import"
