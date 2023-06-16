@@ -1,5 +1,5 @@
 {
-  "name": "@cj0x39e/retrying-dynamic-import",
+  "name": "rollup-plugin-retrying-dynamic-import",
   "description": "retrying dynamic import",
   "publishConfig": {
     "access": "public"
