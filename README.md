@@ -5,18 +5,16 @@ When using “dynamic import”, if the import fails, we can’t get the module 
 Add “vite-plugin-retrying-dynamic-import” to Vite configuration.
 
 ```js
-import retryingDynamicImport from "vite-plugin-retrying-dynamic-import"
-{
-   ...
+import retryingDynamicImport from "vite-plugin-retrying-dynamic-import";
+
+export default defineConfig({
   plugins: [
-   ...
-   retryingDynamicImport()
-  ]
-  ...
-}
+    retryingDynamicImport()
+ ],
+});
 ```
 
-Add “retrying-dynamic-import” to the entry file(main.ts/main.js…).
+Add “retrying-dynamic-import” to the entry file(main.ts or main.js).
 
 ```js
 import retryingDynamicImport from "retrying-dynamic-import"
