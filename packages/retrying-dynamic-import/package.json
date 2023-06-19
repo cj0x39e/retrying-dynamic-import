@@ -4,7 +4,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "scripts": {
@@ -26,8 +26,7 @@
   "homepage": "https://github.com/cj0x39e/retrying-dynamic-import#readme",
   "types": "types/index.d.ts",
   "dependencies": {
-    "retrying-dynamic-import": "^0.0.1",
-    "vite-plugin-retrying-dynamic-import": "^0.0.1"
+    "retrying-dynamic-import": "^0.0.1"
   },
   "devDependencies": {
     "rimraf": "^5.0.1",
