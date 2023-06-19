@@ -21,5 +21,5 @@
     "moduleResolution": "node"
   },
   "include": ["src/**/*", "types/**/*"],
-  "exclude": ["dist", "node_modules", "__tests__/types"]
+  "exclude": ["dist", "node_modules"]
 }

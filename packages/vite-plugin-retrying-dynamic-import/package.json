@@ -1,5 +1,5 @@
 {
-  "name": "rollup-plugin-retrying-dynamic-import",
+  "name": "vite-plugin-retrying-dynamic-import",
   "description": "retrying dynamic import",
   "publishConfig": {
     "access": "public"
@@ -16,7 +16,7 @@
     "url": "git+https://github.com/cj0x39e/retrying-dynamic-import.git"
   },
   "keywords": [
-    "rollup-plugin",
+    "vite-plugin",
     "dynamic import"
   ],
   "author": "cj0x39e",
@@ -27,11 +27,13 @@
   "homepage": "https://github.com/cj0x39e/retrying-dynamic-import#readme",
   "types": "types/index.d.ts",
   "dependencies": {
-    "@rollup/plugin-typescript": "^11.1.1"
+    "vite": "^4.3.9"
   },
   "devDependencies": {
+    "@rollup/plugin-typescript": "^11.1.1",
     "rimraf": "^5.0.1",
     "rollup": "^3.25.1",
+    "tslib": "^2.5.3",
     "typescript": "^5.1.3"
   }
 }

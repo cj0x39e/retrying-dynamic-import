@@ -2,10 +2,10 @@ When using “dynamic import”, if the import fails, we can’t get the module 
 
 #### How to use
 
-Add “rollup-plugin-retrying-dynamic-import” to the Rollup or Vite configuration.
+Add “vite-plugin-retrying-dynamic-import” to Vite configuration.
 
 ```js
-import retryingDynamicImport from "rollup-plugin-retrying-dynamic-import"
+import retryingDynamicImport from "vite-plugin-retrying-dynamic-import"
 {
    ...
   plugins: [
@@ -15,6 +15,7 @@ import retryingDynamicImport from "rollup-plugin-retrying-dynamic-import"
   ...
 }
 ```
+
 Add “retrying-dynamic-import” to the entry file(main.ts/main.js…).
 
 ```js
@@ -32,6 +33,7 @@ Finished.
 3. just that.
 
 #### Related issues:
+
 1. https://github.com/vuejs/router/issues/1371
 2. https://github.com/vuejs/router/issues/1333
 3. https://github.com/vitejs/vite/issues/11804

@@ -1,6 +1,19 @@
+// match a module url
+// eg: import('hello.js') => 'hello.js'
 const uriOrRelativePathRegex = /import\(["']([^)]+)['"]\)/;
 
+/**
+ * Records a module if it's already loaded.
+ * key: module url
+ * value: module
+ */
 const moduleCache: Record<string, any> = {};
+
+/**
+ * Records the number of retrying times of a module.
+ * key: module url
+ * value: number
+ */
 const moduleRetryCount: Record<string, number> = {};
 
 const fetchModule = async (url: string): Promise<any> => {
@@ -13,17 +26,20 @@ const fetchModule = async (url: string): Promise<any> => {
       res: (value: unknown) => void,
       rej: (reason?: any) => void
     ) => {
-      const urlWithTime = url.includes("?")
-        ? url + "&t=" + Date.now()
-        : url + "?t=" + Date.now();
       const online = window.navigator.onLine;
 
       if (!online) {
-        rej(new Error("请检查网络状态"));
+        rej(new Error("No internet connection"));
         return;
       }
 
-      const importUrl = moduleRetryCount[url] == undefined ? url : urlWithTime;
+      const urlWithTimestamp = url.includes("?")
+        ? url + "&t=" + Date.now()
+        : url + "?t=" + Date.now();
+
+      // if the module is not loaded, use the original url
+      const importUrl =
+        moduleRetryCount[url] == undefined ? url : urlWithTimestamp;
 
       import(/* @vite-ignore */ importUrl)
         .then((mod) => {
@@ -68,7 +84,8 @@ const getRouteComponentUrl = (originalImport: () => Promise<any>) => {
   return url;
 };
 
-export const retryingDynamicImport = () => {
+const retryingDynamicImport = () => {
+  // wrap the original import function
   window.__retrying_dynamic_loader__ = (originalImport: () => Promise<any>) => {
     return new Promise((resolve, reject) => {
       const url = getRouteComponentUrl(originalImport);
@@ -81,3 +98,5 @@ export const retryingDynamicImport = () => {
     });
   };
 };
+
+export default retryingDynamicImport;

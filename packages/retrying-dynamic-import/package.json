@@ -25,7 +25,10 @@
   },
   "homepage": "https://github.com/cj0x39e/retrying-dynamic-import#readme",
   "types": "types/index.d.ts",
-  "dependencies": {},
+  "dependencies": {
+    "retrying-dynamic-import": "^0.0.1",
+    "vite-plugin-retrying-dynamic-import": "^0.0.1"
+  },
   "devDependencies": {
     "rimraf": "^5.0.1",
     "rollup": "^3.25.1",
