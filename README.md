@@ -43,7 +43,7 @@ export default defineConfig({
 });
 ```
 
-If it fails when preloading CSS Files, Vite will not retry, and this lib will not retry too. Because this lib can't control preloading behavior.
+If it fails when preloading CSS files, Vite will not retry, and this lib will not retry too. Because this lib can't control preloading behavior.
 
 I use the following code to resolve that.
 
