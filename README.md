@@ -31,12 +31,30 @@ If the value of the "build.modulePreload" option is true(the default value is tr
 I use the following code to resolve that.
 
 ```js
- // vite.config.ts
- modulePreload: {
-    resolveDependencies: (filename, deps, { hostId, hostType }) => {
-      return deps.filter((file: string) => !file.match(/\.js$/));
-    }
+// vite.config.ts
+export default defineConfig({
+  build: {
+    modulePreload: {
+      resolveDependencies: (filename, deps, { hostId, hostType }) => {
+        return deps.filter((file: string) => !file.match(/\.js$/));
+      },
+    },
   },
+});
+```
+
+If it fails when preloading CSS Files, Vite will not retry, and this lib will not retry too. Because this lib can't control preloading behavior.
+
+I use the following code to resolve that.
+
+```js
+// vite.config.ts
+export default defineConfig({
+  build: {
+    cssCodeSplit: false,
+    modulePreload: false,
+  },
+});
 ```
 
 ### How it works
