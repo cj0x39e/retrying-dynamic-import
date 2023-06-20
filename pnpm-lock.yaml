@@ -8,7 +8,17 @@ importers:
 
   .: {}
 
+  examples/vite-demo:
+    dependencies:
+      retrying-dynamic-import:
+        specifier: ^0.0.5
+        version: link:../../packages/retrying-dynamic-import
+
   packages/retrying-dynamic-import:
+    dependencies:
+      retrying-dynamic-import:
+        specifier: ^0.0.5
+        version: 'link:'
     devDependencies:
       rimraf:
         specifier: ^5.0.1

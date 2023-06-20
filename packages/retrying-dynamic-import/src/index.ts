@@ -1,4 +1,7 @@
 // match a module url
+
+import type { Options } from "types";
+
 // eg: import('hello.js') => 'hello.js'
 const uriOrRelativePathRegex = /import\(["']([^)]+)['"]\)/;
 
@@ -16,6 +19,8 @@ const moduleCache: Record<string, any> = {};
  */
 const moduleRetryCount: Record<string, number> = {};
 
+const options: Options = { offlineMessage: "No internet connection" };
+
 const fetchModule = async (url: string): Promise<any> => {
   if (moduleCache[url]) {
     return moduleCache[url];
@@ -29,7 +34,11 @@ const fetchModule = async (url: string): Promise<any> => {
       const online = window.navigator.onLine;
 
       if (!online) {
-        rej(new Error("No internet connection"));
+        if (options.offlineCallback) {
+          options.offlineCallback();
+        }
+        rej(new Error(options.offlineMessage));
+
         return;
       }
 
@@ -84,7 +93,13 @@ const getRouteComponentUrl = (originalImport: () => Promise<any>) => {
   return url;
 };
 
-const retryingDynamicImport = () => {
+const mergeOptions = (userOptions: Options) => {
+  Object.assign(options, userOptions);
+};
+
+const retryingDynamicImport = (options: Options) => {
+  mergeOptions(options);
+
   // wrap the original import function
   window.__retrying_dynamic_loader__ = (originalImport: () => Promise<any>) => {
     return new Promise((resolve, reject) => {
