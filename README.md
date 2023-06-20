@@ -24,12 +24,6 @@ retryingDynamicImport(// your options);
 
 Finished.
 
-### How it works
-
-1. “import(’a.js’)” fails.
-2. I change ‘a.js’ to ‘a.js?t=xxxxxx’ and try again.
-3. just that.
-
 ### About Vite "build.modulePreload" option
 
 If the value of the "build.modulePreload" option is true(the default value is true). you can't use this lib directly, because if preload fails, the dynamic import will fail directly.
@@ -44,6 +38,12 @@ I use the following code to resolve that.
     }
   },
 ```
+
+### How it works
+
+1. “import(’a.js’)” fails.
+2. I change ‘a.js’ to ‘a.js?t=xxxxxx’ and try again.
+3. just that.
 
 ### Related issues:
 
