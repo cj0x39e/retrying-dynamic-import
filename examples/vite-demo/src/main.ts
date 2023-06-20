@@ -1,6 +1,8 @@
 import retryingDynamicImport from "retrying-dynamic-import";
 
-retryingDynamicImport();
+retryingDynamicImport({
+  offlineMessage: "Please check your internet connection",
+});
 
 import { createApp } from "vue";
 import { createRouter, createWebHashHistory } from "vue-router";
