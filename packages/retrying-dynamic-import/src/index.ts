@@ -1,6 +1,6 @@
 // match a module url
 
-import type { Options } from "types";
+import type { Options } from "../types";
 
 // eg: import('hello.js') => 'hello.js'
 const uriOrRelativePathRegex = /import\(["']([^)]+)['"]\)/;
