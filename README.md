@@ -1,6 +1,6 @@
 When using “dynamic import”, if the import fails, we can’t get the module again. Therefore, I wrote this library to attempt to solve the issue.
 
-#### How to use
+### How to use
 
 Add “vite-plugin-retrying-dynamic-import” to Vite configuration.
 
@@ -24,7 +24,7 @@ retryingDynamicImport(// your options);
 
 Finished.
 
-#### How it works
+### How it works
 
 1. “import(’a.js’)” fails.
 2. I change ‘a.js’ to ‘a.js?t=xxxxxx’ and try again.
@@ -45,7 +45,7 @@ I use the following code to resolve that.
   },
 ```
 
-#### Related issues:
+### Related issues:
 
 1. https://github.com/vuejs/router/issues/1371
 2. https://github.com/vuejs/router/issues/1333
