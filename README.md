@@ -14,7 +14,7 @@ export default defineConfig({
 
 Add “retrying-dynamic-import” to the entry file(main.ts or main.js).
 
-The position is on top of the entry file. Because I will register a global function to the window(its name is "**retrying_dynamic_loader** ").
+The position is on top of the entry file. Because I will register a global function to the window(its name is "\_\_retrying_dynamic_loader\_\_ ").
 
 ```js
 import retryingDynamicImport from "retrying-dynamic-import"
