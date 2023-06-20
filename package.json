@@ -9,7 +9,5 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "packages": "link:D:/taozhi/github/retrying-dynamic-import/packages"
-  }
+  "dependencies": {}
 }
