@@ -24,17 +24,45 @@ retryingDynamicImport(// your options);
 
 Finished.
 
+### Options
+
+#### Options for the "retrying-dynamic-import".
+
+```ts
+export type Options = {
+  /**
+   * Message to report when user is offline
+   * @type {string}
+   * @default "No internet connection"
+   */
+  offlineMessage?: string;
+
+  /**
+   * Callback to call when user is offline.
+   * @default undefined
+   */
+  offlineCallback?: () => void;
+
+  /**
+   * Whether to retry CSS when user is offline
+   * @default false
+   */
+  disableRetryingCSS?: boolean;
+};
+```
+
 ### About Vite "build.modulePreload" option
 
 If the code of dynamic import is similar below:
 
 ```js
 // main.js
-import('a.js')
+import("a.js");
 
 // a.js
-import b from 'b.js';
+import b from "b.js";
 ```
+
 Vite will preload the b.js before dynamic importing the a.js. If the b.js load fails, the a.js will be failed too.
 
 We can't control how to load b.js because that is a static import. So, We need to turn off preloading js in Vite.
@@ -43,16 +71,16 @@ We can't control how to load b.js because that is a static import. So, We need t
 // vite.config.ts
 export default defineConfig({
   build: {
-      modulePreload: {
+    modulePreload: {
       resolveDependencies: (filename, deps, { hostId, hostType }) => {
         return deps.filter((file: string) => !file.match(/\.js$/));
-      }
+      },
     },
   },
 });
 ```
 
-If it fails when preloading CSS Files, Vite will not retry. This lib will reload all the loading failed  CSS files before loading each dynamic import module.
+If it fails when preloading CSS Files, Vite will not retry. This lib will reload all the loading failed CSS files before loading each dynamic import module.
 
 If the modulePreload option is false, similar to the following code:
 
@@ -70,10 +98,10 @@ You need to configure the disableRetryingCSS to true that will not do retrying l
 
 ```js
 // main.js
-import retryingDynamicImport from "retrying-dynamic-import."
+import retryingDynamicImport from "retrying-dynamic-import.";
 
 retryingDynamicImport({
-  disableRetryingCSS: true
+  disableRetryingCSS: true,
 });
 ```
 
