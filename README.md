@@ -28,24 +28,9 @@ Finished.
 
 If the value of the "build.modulePreload" option is true(the default value is true). You can't use this lib directly because if preload fails, the dynamic import will fail directly.
 
-I use the following code to resolve that.
-
-```js
-// vite.config.ts
-export default defineConfig({
-  build: {
-    modulePreload: {
-      resolveDependencies: (filename, deps, { hostId, hostType }) => {
-        return deps.filter((file: string) => !file.match(/\.js$/));
-      },
-    },
-  },
-});
-```
-
 If it fails when preloading CSS Files, Vite will not retry, and this lib will not retry too because it can't control preloading behaviour.
 
-I use the following code to resolve that.
+So, I use the following code to resolve that.
 
 ```js
 // vite.config.ts
