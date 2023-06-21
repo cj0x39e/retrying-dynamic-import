@@ -11,6 +11,12 @@ export type Options = {
    * @default undefined
    */
   offlineCallback?: () => void;
+
+  /**
+   * Whether to retry CSS when user is offline
+   * @default false
+   */
+  disableRetryingCSS?: boolean;
 };
 
 export default function retryingDynamicImport(options?: Options): void;

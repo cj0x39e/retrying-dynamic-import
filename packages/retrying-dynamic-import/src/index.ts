@@ -1,7 +1,7 @@
-// match a module url
-
 import type { Options } from "../types";
+import { retryToLoadCSS } from "./retryingCSS";
 
+// match a module url
 // eg: import('hello.js') => 'hello.js'
 const uriOrRelativePathRegex = /import\(["']([^)]+)['"]\)/;
 
@@ -19,7 +19,10 @@ const moduleCache: Record<string, any> = {};
  */
 const moduleRetryCount: Record<string, number> = {};
 
-const options: Options = { offlineMessage: "No internet connection" };
+const options: Options = {
+  offlineMessage: "No internet connection",
+  disableRetryingCSS: false,
+};
 
 const fetchModule = async (url: string): Promise<any> => {
   if (moduleCache[url]) {
@@ -100,8 +103,11 @@ const mergeOptions = (userOptions: Options) => {
 const retryingDynamicImport = (options: Options) => {
   mergeOptions(options);
 
-  // wrap the original import function
   window.__retrying_dynamic_loader__ = (originalImport: () => Promise<any>) => {
+    if (options.disableRetryingCSS != true) {
+      retryToLoadCSS();
+    }
+
     return new Promise((resolve, reject) => {
       const url = getRouteComponentUrl(originalImport);
 
