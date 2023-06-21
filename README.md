@@ -17,7 +17,7 @@ Add “retrying-dynamic-import” to the entry file(main.ts or main.js).
 The position is on top of the entry file because I will register a global function to the window(its name is "\_\_retrying_dynamic_loader\_\_ ").
 
 ```js
-import retryingDynamicImport from "retrying-dynamic-import"
+import retryingDynamicImport from "retrying-dynamic-import."
 
 retryingDynamicImport(// your options);
 ```
@@ -26,11 +26,35 @@ Finished.
 
 ### About Vite "build.modulePreload" option
 
-If the value of the "build.modulePreload" option is true(the default value is true). You can't use this lib directly because if preload fails, the dynamic import will fail directly.
+If the code of dynamic import is similar below:
 
-If it fails when preloading CSS Files, Vite will not retry, and this lib will not retry too because it can't control preloading behaviour.
+```js
+// main.js
+import('a.js')
 
-So, I use the following code to resolve that.
+// a.js
+import b from 'b.js';
+```
+Vite will preload the b.js before dynamic importing the a.js. If the b.js load fails, the a.js will be failed too.
+
+We can't control how to load b.js because that is a static import. So, We need to turn off preloading js in Vite.
+
+```js
+// vite.config.ts
+export default defineConfig({
+  build: {
+      modulePreload: {
+      resolveDependencies: (filename, deps, { hostId, hostType }) => {
+        return deps.filter((file: string) => !file.match(/\.js$/));
+      }
+    },
+  },
+});
+```
+
+If it fails when preloading CSS Files, Vite will not retry. This lib will reload all the loading failed  CSS files before loading each dynamic import module.
+
+If the modulePreload option is false, similar to the following code:
 
 ```js
 // vite.config.ts
@@ -39,6 +63,17 @@ export default defineConfig({
     cssCodeSplit: false,
     modulePreload: false,
   },
+});
+```
+
+You need to configure the disableRetryingCSS to true that will not do retrying loadings CSS files.
+
+```js
+// main.js
+import retryingDynamicImport from "retrying-dynamic-import."
+
+retryingDynamicImport({
+  disableRetryingCSS: true
 });
 ```
 
