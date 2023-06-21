@@ -1,4 +1,4 @@
-When using “dynamic import”, if the import fails, we can’t get the module again. Therefore, I wrote this library to attempt to solve the issue.
+When using "dynamic import", we can't get the module again if the import fails. Therefore, I wrote this library to attempt to solve the issue.
 
 ### How to use
 
@@ -14,7 +14,7 @@ export default defineConfig({
 
 Add “retrying-dynamic-import” to the entry file(main.ts or main.js).
 
-The position is on top of the entry file. Because I will register a global function to the window(its name is "\_\_retrying_dynamic_loader\_\_ ").
+The position is on top of the entry file because I will register a global function to the window(its name is "\_\_retrying_dynamic_loader\_\_ ").
 
 ```js
 import retryingDynamicImport from "retrying-dynamic-import"
@@ -26,7 +26,7 @@ Finished.
 
 ### About Vite "build.modulePreload" option
 
-If the value of the "build.modulePreload" option is true(the default value is true). you can't use this lib directly, because if preload fails, the dynamic import will fail directly.
+If the value of the "build.modulePreload" option is true(the default value is true). You can't use this lib directly because if preload fails, the dynamic import will fail directly.
 
 I use the following code to resolve that.
 
@@ -43,7 +43,7 @@ export default defineConfig({
 });
 ```
 
-If it fails when preloading CSS Files, Vite will not retry, and this lib will not retry too. Because this lib can't control preloading behavior.
+If it fails when preloading CSS Files, Vite will not retry, and this lib will not retry too because it can't control preloading behaviour.
 
 I use the following code to resolve that.
 
