@@ -1,19 +1,19 @@
 export type Options = {
   /**
-   * Message to report when user is offline
+   * Message to report when the user is offline
    * @type {string}
    * @default "No internet connection"
    */
   offlineMessage?: string;
 
   /**
-   * Callback to call when user is offline.
+   * Callback to call when the user is offline.
    * @default undefined
    */
   offlineCallback?: () => void;
 
   /**
-   * Whether to retry CSS when user is offline
+   * Whether to retry CSS when loads dynamic modules
    * @default false
    */
   disableRetryingCSS?: boolean;
