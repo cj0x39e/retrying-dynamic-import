@@ -9,8 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "retrying-dynamic-import": "^0.0.5",
-    "vite-plugin-retrying-dynamic-import": "^0.0.3",
+    "retrying-dynamic-import": "^0.0.8",
+    "vite-plugin-retrying-dynamic-import": "^0.0.4",
     "vue": "^3.2.47",
     "vue-router": "^4.2.2"
   },

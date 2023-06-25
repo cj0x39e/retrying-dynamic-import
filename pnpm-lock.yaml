@@ -1,24 +1,10 @@
 lockfileVersion: '6.0'
 
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false
-
 importers:
 
   .: {}
 
-  examples/vite-demo:
-    dependencies:
-      retrying-dynamic-import:
-        specifier: ^0.0.5
-        version: link:../../packages/retrying-dynamic-import
-
   packages/retrying-dynamic-import:
-    dependencies:
-      retrying-dynamic-import:
-        specifier: ^0.0.5
-        version: 'link:'
     devDependencies:
       rimraf:
         specifier: ^5.0.1
@@ -678,3 +664,7 @@ packages:
       string-width: 5.1.2
       strip-ansi: 7.1.0
     dev: true
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false

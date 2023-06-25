@@ -1,3 +1,7 @@
+## 0.0.9
+
+- Don't retry to load a CSS file when it is loading.
+
 ## 0.0.8
 
 - preserve "@vite-ignore"
