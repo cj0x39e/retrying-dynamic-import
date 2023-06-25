@@ -1,3 +1,7 @@
+## 0.0.10
+
+- Fix the error that the code has an error when users do not configure options.
+
 ## 0.0.9
 
 - Don't retry to load a CSS file when it is loading.

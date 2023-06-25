@@ -100,7 +100,7 @@ const mergeOptions = (userOptions: Options) => {
   Object.assign(options, userOptions);
 };
 
-const retryingDynamicImport = (options: Options) => {
+const retryingDynamicImport = (options: Options = {}) => {
   mergeOptions(options);
 
   window.__retrying_dynamic_loader__ = (originalImport: () => Promise<any>) => {
