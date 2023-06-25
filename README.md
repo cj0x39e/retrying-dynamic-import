@@ -55,7 +55,6 @@ export type Options = {
 
 There are currently no options.
 
-
 ### About Vite "build.modulePreload" option
 
 If the code of dynamic import is similar below:

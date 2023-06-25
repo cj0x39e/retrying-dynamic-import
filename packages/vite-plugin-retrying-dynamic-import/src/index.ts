@@ -1,6 +1,6 @@
 import type { Plugin } from "vite";
 
-const retryingModuleId = "retrying-dynamic-import";
+const retryingModuleId = "retrying-dynamic-import/dist";
 
 export default function retryingDynamicImport(): Plugin {
   return {
@@ -8,7 +8,7 @@ export default function retryingDynamicImport(): Plugin {
     enforce: "pre",
     apply: "build",
     renderDynamicImport({ moduleId }) {
-      if (moduleId === retryingModuleId) {
+      if (moduleId.includes(retryingModuleId)) {
         return null;
       }
 

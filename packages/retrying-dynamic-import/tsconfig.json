@@ -3,7 +3,7 @@
     "module": "esnext",
     "declaration": true,
     "declarationDir": "./",
-    "removeComments": true,
+    "removeComments": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
