@@ -1,3 +1,7 @@
+## 0.0.8
+
+- preserve "@vite-ignore"
+
 ## 0.0.7
 
 - It is possible retrying the CSS file.
