@@ -2,6 +2,16 @@ English | [中文](https://github.com/cj0x39e/retrying-dynamic-import/blob/main/
 
 When using "dynamic import", we can't get the module again if the import fails. Therefore, I wrote this library to attempt to solve the issue.
 
+### What does it resolve?
+
+1. If the code 'import('a.js')' fails when loaded. When loading it again, this lib will retry. The default behaviour will fail again directly.
+
+2. If the user does not have internet access, it will fail immediately and will not proceed to execute the import function.
+
+3. This library will attempt to reload any CSS files that have failed to load.
+
+If a.js dependencies b.js and b.js is a 'static import module', the loading of a.js will fail if b.js fails to load. Unfortunately, it cannot be fixed.
+
 ### How to use
 
 Add “vite-plugin-retrying-dynamic-import” to Vite configuration.
