@@ -14,7 +14,7 @@ If a.js dependencies b.js and b.js is a 'static import module', the loading of a
 
 ### How to use
 
-Add “vite-plugin-retrying-dynamic-import” to Vite configuration.
+To add “vite-plugin-retrying-dynamic-import” to Vite configuration.
 
 ```js
 import retryingDynamicImport from "vite-plugin-retrying-dynamic-import";
@@ -24,9 +24,9 @@ export default defineConfig({
 });
 ```
 
-Add “retrying-dynamic-import” to the entry file(main.ts or main.js).
+To add “retrying-dynamic-import” to the entry file(main.ts or main.js).
 
-The position is on top of the entry file because I will register a global function to the window(its name is "\_\_retrying_dynamic_loader\_\_ ").
+You need to place the position at the top of the entry file in order to register a global function to the window.(the name is "\_\_retrying_dynamic_loader\_\_ ")
 
 ```js
 import retryingDynamicImport from "retrying-dynamic-import."
