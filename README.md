@@ -1,3 +1,5 @@
+English | [中文](https://github.com/cj0x39e/retrying-dynamic-import/blob/main/README.zh-CN.md)
+
 When using "dynamic import", we can't get the module again if the import fails. Therefore, I wrote this library to attempt to solve the issue.
 
 ### How to use
