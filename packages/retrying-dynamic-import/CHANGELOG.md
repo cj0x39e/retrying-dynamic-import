@@ -1,3 +1,7 @@
+## 0.0.11
+
+- Add the 'checkOnlineUrl' option
+
 ## 0.0.10
 
 - Fix the error that the code has an error when users do not configure options.

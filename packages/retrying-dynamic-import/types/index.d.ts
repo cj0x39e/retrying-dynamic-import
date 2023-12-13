@@ -17,6 +17,13 @@ export type Options = {
    * @default false
    */
   disableRetryingCSS?: boolean;
+
+  /**
+   * When the value of 'window.navigator.onLine' is false, request the URL to detect if the network
+   * is actually offline. Sometimes, even when the value is false, the browser can still connect
+   * to the internet.
+   */
+  checkOnlineUrl?: string;
 };
 
 export default function retryingDynamicImport(options?: Options): void;

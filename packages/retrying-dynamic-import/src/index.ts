@@ -22,6 +22,21 @@ const moduleRetryCount: Record<string, number> = {};
 const options: Options = {
   offlineMessage: "No internet connection",
   disableRetryingCSS: false,
+  checkOnlineUrl: null,
+};
+
+const isOffline = async () => {
+  try {
+    const response = await fetch(options.checkOnlineUrl);
+
+    if (response.ok) {
+      return false;
+    } else {
+      return true;
+    }
+  } catch {
+    return true;
+  }
 };
 
 const fetchModule = async (url: string): Promise<any> => {
@@ -30,19 +45,32 @@ const fetchModule = async (url: string): Promise<any> => {
   }
 
   return new Promise((resolve, reject) => {
-    const retry = (
+    const retry = async (
       res: (value: unknown) => void,
       rej: (reason?: any) => void
     ) => {
       const online = window.navigator.onLine;
 
-      if (!online) {
+      const handleOffline = () => {
         if (options.offlineCallback) {
           options.offlineCallback();
         }
         rej(new Error(options.offlineMessage));
+      };
 
-        return;
+      if (!online) {
+        /// Check the network status again.
+        if (options.checkOnlineUrl !== null) {
+          const offline = await isOffline();
+
+          if (offline) {
+            handleOffline();
+            return;
+          }
+        } else {
+          handleOffline();
+          return;
+        }
       }
 
       const urlWithTimestamp = url.includes("?")
