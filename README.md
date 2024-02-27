@@ -4,7 +4,7 @@ When using "dynamic import", we can't get the module again when the import loads
 
 ### What does it resolve?
 
-1. If the code 'import('a.js')' fails when loaded, this library will retry when loaded again. The default behavior will fail again directly.
+1. If the code 'import('a.js')' has failed when loaded, this library will retry when loading again. The default behavior will fail immediately.
 
 2. If the user is unable to  access the internet, it will fail immediately and will not proceed to execute the import function.
 
