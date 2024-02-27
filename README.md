@@ -1,20 +1,20 @@
 English | [中文](https://github.com/cj0x39e/retrying-dynamic-import/blob/main/README.zh-CN.md)
 
-When using "dynamic import", we can't get the module again if the import fails. Therefore, I wrote this library to attempt to solve the issue.
+When using "dynamic import", we can't get the module again when the import loads unsuccessfully. Therefore, I wrote this library to attempt to solve the issue.
 
 ### What does it resolve?
 
-1. If the code 'import('a.js')' fails when loaded. When loading it again, this lib will retry. The default behaviour will fail again directly.
+1. If the code 'import('a.js')' fails when loaded, this library will retry when loaded again. The default behavior will fail again directly.
 
-2. If the user does not have internet access, it will fail immediately and will not proceed to execute the import function.
+2. If the user is unable to  access the internet, it will fail immediately and will not proceed to execute the import function.
 
 3. This library will attempt to reload any CSS files that have failed to load.
 
-If a.js dependencies b.js and b.js is a 'static import module', the loading of a.js will fail if b.js fails to load. Unfortunately, it cannot be fixed.
+If a.js dependencies b.js and b.js is a 'static import module', the loading of a.js will be failed if b.js is failed to load. Unfortunately, it can't be fixed.
 
 ### How to use
 
-To add “vite-plugin-retrying-dynamic-import” to Vite configuration.
+Add “vite-plugin-retrying-dynamic-import” to Vite configuration.
 
 ```js
 import retryingDynamicImport from "vite-plugin-retrying-dynamic-import";
@@ -24,12 +24,12 @@ export default defineConfig({
 });
 ```
 
-To add “retrying-dynamic-import” to the entry file(main.ts or main.js).
+Add “retrying-dynamic-import” to the entry file(main.ts or main.js).
 
-You need to place the position at the top of the entry file in order to register a global function to the window.(the name is "\_\_retrying_dynamic_loader\_\_ ")
+Place at the top of the entry file in order to register a global function to the window.(the name is "\_\_retrying_dynamic_loader\_\_ ")
 
 ```js
-import retryingDynamicImport from "retrying-dynamic-import."
+import retryingDynamicImport from "retrying-dynamic-import"
 
 retryingDynamicImport(// your options);
 ```
@@ -86,9 +86,9 @@ import("a.js");
 import b from "b.js";
 ```
 
-Vite will preload the b.js before dynamic importing the a.js. If the b.js load fails, the a.js will be failed too.
+Vite will preload the b.js before dynamic importing the a.js. If the b.js is failed, the a.js will be failed too.
 
-We can't control how to load b.js because that is a static import. So, We need to turn off preloading js in Vite.
+We can't control how to load b.js because that is a static import. So, we need to turn off preloading js in Vite.
 
 ```js
 // vite.config.ts
@@ -103,7 +103,9 @@ export default defineConfig({
 });
 ```
 
-If it fails when preloading CSS Files, Vite will not retry. This lib will reload all the loading failed CSS files before loading each dynamic import module.
+### About retrying CSS files
+
+If it is failed when preloading CSS Files, Vite will not retry. This lib will reload all the loading failed CSS files before loading each dynamic import module.
 
 If the modulePreload option is false, similar to the following code:
 
