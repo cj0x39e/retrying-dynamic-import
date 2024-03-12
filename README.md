@@ -10,7 +10,7 @@ When using "dynamic import", we can't get the module again when the import loads
 
 3. This library will attempt to reload any CSS files that have failed to load.
 
-If a.js dependencies b.js and b.js is a 'static import module', the loading of a.js will be failed if b.js is failed to load. Unfortunately, it can't be fixed.
+If a.js dependencies b.js and b.js is a 'static import module', the load of a.js will fail if b.js has failed to load. Unfortunately, it can't be fixed.
 
 ### How to use
 
@@ -26,7 +26,7 @@ export default defineConfig({
 
 Add “retrying-dynamic-import” to the entry file(main.ts or main.js).
 
-Place at the top of the entry file in order to register a global function to the window.(the name is "\_\_retrying_dynamic_loader\_\_ ")
+Place at the top of the entry file as posiible as in order to register a global function to the window.(the name is "\_\_retrying_dynamic_loader\_\_ ")
 
 ```js
 import retryingDynamicImport from "retrying-dynamic-import"
@@ -86,7 +86,7 @@ import("a.js");
 import b from "b.js";
 ```
 
-Vite will preload the b.js before dynamic importing the a.js. If the b.js is failed, the a.js will be failed too.
+Vite will preload the b.js before dynamic importing the a.js. If the b.js has failed, the a.js will be failed too.
 
 We can't control how to load b.js because that is a static import. So, we need to turn off preloading js in Vite.
 
@@ -105,7 +105,7 @@ export default defineConfig({
 
 ### About retrying CSS files
 
-If it is failed when preloading CSS Files, Vite will not retry. This lib will reload all the loading failed CSS files before loading each dynamic import module.
+If it has failed when preloading CSS Files, Vite will not retry. This lib will reload all the loading failed CSS files before loading each dynamic import module.
 
 If the modulePreload option is false, similar to the following code:
 
