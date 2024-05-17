@@ -1,14 +1,14 @@
 English | [中文](https://github.com/cj0x39e/retrying-dynamic-import/blob/main/README.zh-CN.md)
 
-When using "dynamic import", we can't get the module again when the import loads unsuccessfully. Therefore, I wrote this library to attempt to solve the issue.
+If a “dynamic module” fails to load, the browser will not load it again forever. so, I wrote this lib to attempt to solve the issue.
 
 ### What does it resolve?
 
-1. If the code 'import('a.js')' has failed when loaded, this library will retry when loading again. The default behavior will fail immediately.
+1. If  'import('a.js')' has failed, the lib will load it again as the load process is called. The default behavior will fail immediately.
 
-2. If the user is unable to  access the internet, it will fail immediately and will not proceed to execute the import function.
+2. If the user can’t access the internet, the library will fail immediately, but this is not the same as the browser’s default behavior, it doesn’t do the load process.
 
-3. This library will attempt to reload any CSS files that have failed to load.
+3. The lib will attempt to reload any failed  CSS files.
 
 If a.js dependencies b.js and b.js is a 'static import module', the load of a.js will fail if b.js has failed to load. Unfortunately, it can't be fixed.
 
@@ -26,7 +26,7 @@ export default defineConfig({
 
 Add “retrying-dynamic-import” to the entry file(main.ts or main.js).
 
-Place at the top of the entry file as posiible as in order to register a global function to the window.(the name is "\_\_retrying_dynamic_loader\_\_ ")
+Put it at the top of the entry file, because the lib will register a global function to the window object.(the name is "\_\_retrying_dynamic_loader\_\_ ")
 
 ```js
 import retryingDynamicImport from "retrying-dynamic-import"
@@ -63,7 +63,7 @@ export type Options = {
 
   /**
    * When the value of 'window.navigator.onLine' is false, request the URL to detect if the network
-   * is actually offline. Sometimes, even when the value is false, the browser can still connect
+   * is offline. Sometimes, even if the value is false, the browser can still connect
    * to the internet.
    */
   checkOnlineUrl?: string;
@@ -72,11 +72,11 @@ export type Options = {
 
 #### Options for the "vite-plugin-retrying-dynamic-import".
 
-There are currently no options.
+No options.
 
 ### About Vite "build.modulePreload" option
 
-If the code of dynamic import is similar below:
+If the code  is similar below:
 
 ```js
 // main.js
@@ -86,9 +86,9 @@ import("a.js");
 import b from "b.js";
 ```
 
-Vite will preload the b.js before dynamic importing the a.js. If the b.js has failed, the a.js will be failed too.
+Vite will preload the b.js before dynamic importing the a.js. If the b.js has failed, the a.js will fail too.
 
-We can't control how to load b.js because that is a static import. So, we need to turn off preloading js in Vite.
+We can't control how to load b.js because it’s a static import. So, we need to turn off preloading js in Vite.
 
 ```js
 // vite.config.ts
@@ -105,9 +105,9 @@ export default defineConfig({
 
 ### About retrying CSS files
 
-If it has failed when preloading CSS Files, Vite will not retry. This lib will reload all the loading failed CSS files before loading each dynamic import module.
+If it has failed when preloading CSS Files, Vite will not retry. The lib will reload all the failed CSS files before loading each dynamic import module.
 
-If the modulePreload option is false, similar to the following code:
+If the modulePreload option is false, similar to the following:
 
 ```js
 // vite.config.ts
@@ -119,7 +119,7 @@ export default defineConfig({
 });
 ```
 
-You need to configure the disableRetryingCSS to true that will not do retrying loadings CSS files.
+You need to set the disableRetryingCSS to true that will not do retrying loadings CSS files.
 
 ```js
 // main.js
@@ -133,7 +133,7 @@ retryingDynamicImport({
 ### How it works
 
 1. “import(’a.js’)” fails.
-2. I change ‘a.js’ to ‘a.js?t=xxxxxx’ and try again.
+2. The lib change ‘a.js’ to ‘a.js?t=xxxxxx’ and try again.
 3. just that.
 
 ### Related issues:
