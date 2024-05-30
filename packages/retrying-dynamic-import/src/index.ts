@@ -99,7 +99,10 @@ const fetchModule = async (url: string): Promise<any> => {
           }
 
           if (moduleRetryCount[url] <= 3) {
-            retry(res, rej);
+            // waiting for 1 second.
+            // Sometimes the failure may be caused by the server, such as restarting, busying etc.
+            // Retrying without waiting will fail in a too short while.
+            setTimeout(() => retry(res, rej), 1000);
           } else {
             moduleRetryCount[url] = 1;
             rej(err);
