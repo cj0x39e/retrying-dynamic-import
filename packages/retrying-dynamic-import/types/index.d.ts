@@ -24,6 +24,19 @@ export type Options = {
    * to the internet.
    */
   checkOnlineUrl?: string;
+
+  /**
+   * Called before retrying a module
+   * @param url retrying module url
+   * @param count the number of retrying
+   * @returns
+   */
+  onRetry?: (url: string, count: number) => void;
+
+  /**
+   * Retry interval in milliseconds, the default value is 1000ms
+   */
+  interval?: number;
 };
 
 export default function retryingDynamicImport(options?: Options): void;

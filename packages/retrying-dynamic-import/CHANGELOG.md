@@ -1,3 +1,12 @@
+## 0.0.13
+
+- Add the option "interval" to adjust the waiting time before retrying
+- Add the option "onRetry" for logging some information before retrying
+
+## 0.0.12
+
+- Waiting for 1s before retrying
+
 ## 0.0.11
 
 - Add the 'checkOnlineUrl' option

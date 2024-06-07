@@ -23,6 +23,8 @@ const options: Options = {
   offlineMessage: "No internet connection",
   disableRetryingCSS: false,
   checkOnlineUrl: null,
+  onRetry: null,
+  interval: 1000,
 };
 
 const isOffline = async () => {
@@ -102,7 +104,14 @@ const fetchModule = async (url: string): Promise<any> => {
             // waiting for 1 second.
             // Sometimes the failure may be caused by the server, such as restarting, busying etc.
             // Retrying without waiting will fail in a too short while.
-            setTimeout(() => retry(res, rej), 1000);
+            setTimeout(() => {
+              // it's useful to log some information before retrying
+              if (options.onRetry) {
+                options.onRetry(url, moduleRetryCount[url]);
+              }
+
+              retry(res, rej);
+            }, options.interval);
           } else {
             moduleRetryCount[url] = 1;
             rej(err);
