@@ -5,4 +5,8 @@ import retryingDynamicImport from "vite-plugin-retrying-dynamic-import";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue(), retryingDynamicImport()],
+  build: {
+    cssCodeSplit: false,
+    modulePreload: false,
+  },
 });

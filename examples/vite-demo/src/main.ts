@@ -2,6 +2,10 @@ import retryingDynamicImport from "retrying-dynamic-import";
 
 retryingDynamicImport({
   offlineMessage: "Please check your internet connection",
+  interval: 3000,
+  onRetry(url, count) {
+    console.log(`Retry ${count} times: ${url}`);
+  },
 });
 
 import { createApp } from "vue";
