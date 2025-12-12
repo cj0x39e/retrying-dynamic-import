@@ -29,7 +29,12 @@ const options: Options = {
 
 const isOffline = async () => {
   try {
-    const response = await fetch(options.checkOnlineUrl);
+    // Add random parameters to avoid cache
+    const url = options.checkOnlineUrl.includes("?")
+      ? options.checkOnlineUrl + "&t=" + Date.now()
+      : options.checkOnlineUrl + "?t=" + Date.now();
+
+    const response = await fetch(url);
 
     if (response.ok) {
       return false;

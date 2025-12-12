@@ -1,3 +1,7 @@
+## 0.0.14
+
+- Add random parameters to the offline-check URL to avoid cache
+
 ## 0.0.13
 
 - Add the option "interval" to adjust the waiting time before retrying
