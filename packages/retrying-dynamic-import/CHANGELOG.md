@@ -1,3 +1,15 @@
+## 0.0.15
+
+- Add `maxRetries` option to configure maximum retry attempts
+- Deduplicate concurrent requests for the same module
+- Improve type safety: replace `any` with `unknown`
+- Fix retry counter reset logic on success
+- Improve URL parsing regex to support whitespace in import statements
+- Add enriched error messages with context on final failure
+- Refactor code with better modularity and comments
+- Add unit tests with vitest
+- Add GitHub Actions CI workflow
+
 ## 0.0.14
 
 - Add random parameters to the offline-check URL to avoid cache

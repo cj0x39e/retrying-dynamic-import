@@ -5,7 +5,7 @@ const pkg = require("./package.json");
 const config = {
   input: "src/index.ts",
   output: [
-    { file: pkg.main, format: "cjs", sourcemap: false, exports: "auto" },
+    { file: pkg.main, format: "cjs", sourcemap: false, exports: "named" },
     { file: pkg.module, format: "es", sourcemap: false },
   ],
   plugins: [
@@ -18,7 +18,7 @@ const config = {
       tsconfig: "./tsconfig.json",
     }),
   ],
-  external: Object.keys(pkg.dependencies),
+  external: Object.keys(pkg.dependencies || {}),
 };
 
 module.exports = config;
